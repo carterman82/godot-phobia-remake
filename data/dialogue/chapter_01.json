@@ -1,0 +1,30 @@
+{
+  "intro_01": {
+    "lines": [
+      {
+        "speaker": "Elizabeth",
+        "portrait": "res://assets/sprites/elizabeth_portrait.png",
+        "text": "I finally got away..."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "res://assets/sprites/elizabeth_portrait.png",
+        "text": "This city... it feels different at night."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "res://assets/sprites/elizabeth_portrait.png",
+        "text": "I need to keep moving."
+      }
+    ]
+  },
+  "street_lamp_01": {
+    "lines": [
+      {
+        "speaker": "Elizabeth",
+        "portrait": "res://assets/sprites/elizabeth_portrait.png",
+        "text": "The streetlamps are the only things keeping the dark away."
+      }
+    ]
+  }
+}

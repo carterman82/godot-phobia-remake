@@ -10,9 +10,24 @@ config_version=5
 
 [application]
 
-config/name="TestGameProject"
+config/name="Phobia"
+config/run/main_scene="res://scenes/TitleScreen.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DialogueManager="*res://scripts/autoloads/DialogueManager.gd"
+SceneManager="*res://scripts/autoloads/SceneManager.gd"
+AudioManager="*res://scripts/autoloads/AudioManager.gd"
+
+[input]
+
+ui_interact={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"location":0,"echo":false,"script":null)
+]
+}
 
 [physics]
 

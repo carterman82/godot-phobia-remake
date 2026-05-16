@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/EventTrigger.gd" id="2_trigger"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(16, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(2560, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger_a"]
+size = Vector2(40, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger_b"]
+size = Vector2(40, 60)
+
+[node name="Level01" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(640, 550)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(260, 500)
+script = ExtResource("1_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 5.0
+limit_left = 0
+limit_right = 1280
+limit_bottom = 600
+
+[node name="IntroTrigger" type="Area2D" parent="."]
+position = Vector2(260, 500)
+script = ExtResource("2_trigger")
+dialogue_id = "intro_01"
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IntroTrigger"]
+shape = SubResource("RectangleShape2D_trigger_a")
+
+[node name="LampTrigger" type="Area2D" parent="."]
+position = Vector2(620, 500)
+script = ExtResource("2_trigger")
+dialogue_id = "street_lamp_01"
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LampTrigger"]
+shape = SubResource("RectangleShape2D_trigger_b")
