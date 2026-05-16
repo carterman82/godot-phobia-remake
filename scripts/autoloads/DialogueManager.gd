@@ -175,3 +175,6 @@ func _end_dialogue() -> void:
 
 func is_active() -> bool:
 	return _active
+
+func has_dialogue(dialogue_id: String) -> bool:
+	return _dialogue_data.has(dialogue_id)

@@ -99,7 +99,7 @@ func _add_strip(frames: SpriteFrames, anim: String, path: String,
 	var tex := load(path) as Texture2D
 	if tex == null:
 		return
-	for i in count:
+	for i in range(count):
 		var atlas := AtlasTexture.new()
 		atlas.atlas = tex
 		if horizontal:
@@ -132,6 +132,7 @@ func _physics_process(delta: float) -> void:
 	if on_floor:
 		_coyote_timer = COYOTE_TIME
 		_jumps_left = MAX_JUMPS
+		_can_dash = true
 	else:
 		_coyote_timer -= delta
 

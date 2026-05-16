@@ -18,7 +18,7 @@ func _ready() -> void:
 func _ensure_bus(bus_name: String) -> void:
 	if AudioServer.get_bus_index(bus_name) == -1:
 		AudioServer.add_bus()
-		AudioServer.set_bus_name(AudioServer.bus_count - 1, bus_name)
+		AudioServer.set_bus_name(AudioServer.get_bus_count() - 1, bus_name)
 
 func play_music(path: String, volume_db: float = 0.0) -> void:
 	var stream := load(path) as AudioStream
