@@ -88,7 +88,7 @@ func _build_ui() -> void:
 func _input(event: InputEvent) -> void:
 	if not _active:
 		return
-	if event.is_action_just_pressed("ui_accept") or event.is_action_just_pressed("ui_interact"):
+	if event.is_action_just_pressed("ui_accept") or event.is_action_just_pressed("dash"):
 		_on_continue_pressed()
 		get_viewport().set_input_as_handled()
 
