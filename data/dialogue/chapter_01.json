@@ -3,18 +3,18 @@
     "lines": [
       {
         "speaker": "Elizabeth",
-        "portrait": "res://assets/sprites/elizabeth_portrait.png",
+        "portrait": "Tired",
         "text": "I finally got away..."
       },
       {
         "speaker": "Elizabeth",
-        "portrait": "res://assets/sprites/elizabeth_portrait.png",
-        "text": "This city... it feels different at night."
+        "portrait": "Tired",
+        "text": "This city feels different at night. Quieter. Like it's holding its breath."
       },
       {
         "speaker": "Elizabeth",
-        "portrait": "res://assets/sprites/elizabeth_portrait.png",
-        "text": "I need to keep moving."
+        "portrait": "Elizabeth",
+        "text": "I need to keep moving. Just... keep moving."
       }
     ]
   },
@@ -22,8 +22,84 @@
     "lines": [
       {
         "speaker": "Elizabeth",
-        "portrait": "res://assets/sprites/elizabeth_portrait.png",
+        "portrait": "Elizabeth",
         "text": "The streetlamps are the only things keeping the dark away."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Sleepy",
+        "text": "...I hate the dark."
+      }
+    ]
+  },
+  "nyctophobia_trigger": {
+    "lines": [
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Shocked",
+        "text": "The lights are going out."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Tears",
+        "text": "No, no, no — not now. Please."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "tmp_yell",
+        "text": "STAY ON!"
+      }
+    ]
+  },
+  "claustrophobia_enter": {
+    "lines": [
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Shocked",
+        "text": "The walls... they're closer than they look."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Ouch",
+        "text": "I can't breathe in here."
+      }
+    ]
+  },
+  "anthropophobia_enter": {
+    "lines": [
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Shocked",
+        "text": "There are people everywhere."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Tears",
+        "text": "They're all looking at me. I know they are."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "tmp_Crying",
+        "text": "I just want to disappear."
+      }
+    ]
+  },
+  "finale_realization": {
+    "lines": [
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Tired",
+        "text": "I've been running from myself this whole time."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "Happy",
+        "text": "But I made it. I actually made it."
+      },
+      {
+        "speaker": "Elizabeth",
+        "portrait": "AdditionalElizabeth",
+        "text": "Maybe I'm stronger than I thought."
       }
     ]
   }

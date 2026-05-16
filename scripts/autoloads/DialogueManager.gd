@@ -5,6 +5,20 @@ signal dialogue_finished
 
 const TYPEWRITER_SPEED := 40.0
 
+# Map short portrait names (used in JSON) to file paths
+const PORTRAIT_MAP := {
+	"Elizabeth":         "res://assets/sprites/Dialog_UI/Elizabeth.png",
+	"Happy":             "res://assets/sprites/Dialog_UI/Happy.png",
+	"Ouch":              "res://assets/sprites/Dialog_UI/Ouch.png",
+	"Shocked":           "res://assets/sprites/Dialog_UI/Shocked.png",
+	"Sleepy":            "res://assets/sprites/Dialog_UI/Sleepy.png",
+	"Tears":             "res://assets/sprites/Dialog_UI/Tears.png",
+	"Tired":             "res://assets/sprites/Dialog_UI/Tired.png",
+	"tmp_Crying":        "res://assets/sprites/Dialog_UI/tmp_Crying.png",
+	"tmp_yell":          "res://assets/sprites/Dialog_UI/tmp_yell.png",
+	"AdditionalElizabeth": "res://assets/sprites/Dialog_UI/AdditionalElizabeth.png",
+}
+
 var _dialogue_data: Dictionary = {}
 var _lines: Array = []
 var _current_index: int = 0
@@ -122,7 +136,8 @@ func _show_current_line() -> void:
 	var line: Dictionary = _lines[_current_index]
 	_name_label.text = line.get("speaker", "")
 
-	var portrait_path: String = line.get("portrait", "")
+	var portrait_key: String = line.get("portrait", "")
+	var portrait_path: String = PORTRAIT_MAP.get(portrait_key, portrait_key)
 	if portrait_path != "" and ResourceLoader.exists(portrait_path):
 		_portrait.texture = load(portrait_path)
 		_portrait.show()
