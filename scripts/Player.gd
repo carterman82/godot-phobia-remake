@@ -49,6 +49,9 @@ func _ready() -> void:
 # ---------------------------------------------------------------------------
 func _setup_sprites() -> void:
 	_sprite.scale = SPRITE_SCALE
+	# Align sprite feet with collision bottom.
+	# Collision half-height = 11, sprite half-height at 4x = 32 → offset = 11-32 = -21
+	_sprite.position = Vector2(0, -21)
 
 	var frames := SpriteFrames.new()
 
