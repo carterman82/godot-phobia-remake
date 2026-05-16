@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/TitleScreen.gd" id="1_title"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/Titlescreen/city.png" id="2_city"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/Titlescreen/puddle.png" id="3_puddle"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Player/Idle/idle.png" id="4_elizabeth"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Envoriments/Fear of Dark/Moon/tmp_moon (1).png" id="5_moon"]
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_title")
@@ -11,13 +13,22 @@ script = ExtResource("1_title")
 position = Vector2(480, 270)
 texture = ExtResource("2_city")
 
+[node name="Moon" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(750, 100)
+scale = Vector2(3, 3)
+texture = ExtResource("5_moon")
+
 [node name="Puddle" type="Sprite2D" parent="."]
 position = Vector2(480, 440)
 modulate = Color(1, 1, 1, 0.5)
 texture = ExtResource("3_puddle")
 
-[node name="ElizabethSprite" type="AnimatedSprite2D" parent="."]
+[node name="ElizabethSprite" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(260, 430)
+scale = Vector2(4, 4)
+texture = ExtResource("4_elizabeth")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

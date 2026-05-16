@@ -51,4 +51,4 @@ func _build_tileset() -> void:
 	ts.add_source(source)
 	tile_set = ts
 	print("LevelTileMap: built tileset from ", atlas_texture_path,
-			" — %d×%d tiles. Paint the level in the Godot editor." % [cols, rows])
+			" — %d×%d tiles." % [cols, rows])

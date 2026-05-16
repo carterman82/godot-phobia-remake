@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var dialogue_id: String = ""
+@export var next_scene: String = ""
 @export var one_shot: bool = true
 
 var _triggered := false
@@ -13,9 +14,15 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	if not body.is_in_group("player"):
 		return
-	if dialogue_id.is_empty():
-		return
 	_triggered = true
-	DialogueManager.start_dialogue(dialogue_id)
+	if not dialogue_id.is_empty():
+		if not next_scene.is_empty():
+			DialogueManager.dialogue_finished.connect(_on_dialogue_finished, CONNECT_ONE_SHOT)
+		DialogueManager.start_dialogue(dialogue_id)
+	elif not next_scene.is_empty():
+		SceneManager.change_scene(next_scene)
 	if one_shot:
 		monitoring = false
+
+func _on_dialogue_finished() -> void:
+	SceneManager.change_scene(next_scene)

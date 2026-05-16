@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_level"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2_player"]
 [ext_resource type="Script" path="res://scripts/EventTrigger.gd" id="3_trigger"]
 [ext_resource type="Script" path="res://scripts/LevelTileMap.gd" id="4_tilemap"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/Titlescreen/city.png" id="5_city"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Envoriments/Fear of Dark/tree/nightsky.png" id="5_nightsky"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Envoriments/Fear of Dark/Moon/tmp_moon (1).png" id="6_moon"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Envoriments/Fear of Dark/tree/treegroup.png" id="7_tree"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Envoriments/Fear of Dark/lantern/lantern.png" id="8_lantern"]
 
 [sub_resource type="RectangleShape2D" id="shape_player"]
 size = Vector2(10, 22)
@@ -15,11 +18,61 @@ size = Vector2(32, 48)
 [node name="Level01" type="Node2D"]
 script = ExtResource("1_level")
 music_path = "res://assets/audio/music/cavesong (mp3cut.net).wav"
+level_index = 1
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(480, 270)
-scale = Vector2(2.72, 2.4)
-texture = ExtResource("5_city")
+z_index = -3
+position = Vector2(760, 270)
+scale = Vector2(1.2, 0.75)
+texture = ExtResource("5_nightsky")
+
+[node name="Moon" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(1200, 80)
+scale = Vector2(3, 3)
+texture = ExtResource("6_moon")
+
+[node name="Tree1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(180, 430)
+scale = Vector2(3, 3)
+texture = ExtResource("7_tree")
+
+[node name="Tree2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(640, 430)
+scale = Vector2(3, 3)
+texture = ExtResource("7_tree")
+
+[node name="Tree3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1100, 430)
+scale = Vector2(3, 3)
+texture = ExtResource("7_tree")
+
+[node name="Tree4" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1420, 430)
+scale = Vector2(3, 3)
+texture = ExtResource("7_tree")
+
+[node name="Lantern1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(370, 470)
+scale = Vector2(3, 3)
+texture = ExtResource("8_lantern")
+
+[node name="Lantern2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(900, 470)
+scale = Vector2(3, 3)
+texture = ExtResource("8_lantern")
+
+[node name="Lantern3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1310, 470)
+scale = Vector2(3, 3)
+texture = ExtResource("8_lantern")
 
 [node name="TileMap" type="TileMap" parent="."]
 collision_layer = 1
@@ -67,4 +120,26 @@ dialogue_id = "street_lamp_01"
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LampTrigger"]
+shape = SubResource("shape_trigger")
+
+[node name="NyctophobiaTrigger" type="Area2D" parent="."]
+position = Vector2(1400, 500)
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("3_trigger")
+dialogue_id = "nyctophobia_trigger"
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NyctophobiaTrigger"]
+shape = SubResource("shape_trigger")
+
+[node name="LevelExit" type="Area2D" parent="."]
+position = Vector2(1510, 490)
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("3_trigger")
+next_scene = "res://scenes/levels/Level02.tscn"
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit"]
 shape = SubResource("shape_trigger")

@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/Level.gd" id="1_level"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2_player"]
+[ext_resource type="Script" path="res://scripts/EventTrigger.gd" id="3_trigger"]
+[ext_resource type="Script" path="res://scripts/LevelTileMap.gd" id="4_tilemap"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Envoriments/Cave/background4a-1.png_8_colors-1.png(1).png" id="5_caveback"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Envoriments/Cave/background3-1.png(1).png" id="6_cavemid"]
+
+[sub_resource type="RectangleShape2D" id="shape_player"]
+size = Vector2(10, 22)
+
+[sub_resource type="RectangleShape2D" id="shape_trigger"]
+size = Vector2(32, 48)
+
+[node name="Level02" type="Node2D"]
+script = ExtResource("1_level")
+music_path = "res://assets/audio/music/cavesong (mp3cut.net).wav"
+level_index = 2
+
+[node name="CaveBack" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(720, 270)
+scale = Vector2(4.5, 2.8)
+texture = ExtResource("5_caveback")
+
+[node name="CaveMid" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(720, 160)
+scale = Vector2(4.5, 3.5)
+texture = ExtResource("6_cavemid")
+
+[node name="TileMap" type="TileMap" parent="."]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("4_tilemap")
+atlas_texture_path = "res://assets/sprites/Tilemap/Caves/New Piskel.png"
+tile_size_px = Vector2i(16, 16)
+physics_layer_enabled = true
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(40, 440)
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("2_player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("shape_player")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 5.0
+limit_left = 0
+limit_right = 1440
+limit_bottom = 580
+
+[node name="ClaustrophobiaTrigger" type="Area2D" parent="."]
+position = Vector2(150, 460)
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("3_trigger")
+dialogue_id = "claustrophobia_enter"
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClaustrophobiaTrigger"]
+shape = SubResource("shape_trigger")
