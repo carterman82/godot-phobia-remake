@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_level"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2_player"]
 [ext_resource type="Script" path="res://scripts/EventTrigger.gd" id="3_trigger"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/Titlescreen/city.png" id="4_city"]
+[ext_resource type="Script" path="res://scripts/LevelTileMap.gd" id="4_tilemap"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/Titlescreen/city.png" id="5_city"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
-size = Vector2(12, 24)
+size = Vector2(10, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(3840, 20)
@@ -23,7 +24,8 @@ music_path = "res://assets/audio/music/cavesong (mp3cut.net).wav"
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(480, 270)
-texture = ExtResource("4_city")
+scale = Vector2(2.72, 2.4)
+texture = ExtResource("5_city")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(960, 530)
@@ -31,8 +33,16 @@ position = Vector2(960, 530)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_floor")
 
+[node name="TileMap" type="TileMap" parent="."]
+script = ExtResource("4_tilemap")
+atlas_texture_path = "res://assets/sprites/Tilemap/FearOfDark/tilemapblack.png"
+tile_size_px = Vector2i(16, 16)
+physics_layer_enabled = true
+
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(120, 480)
+position = Vector2(120, 440)
+collision_layer = 1
+collision_mask = 1
 script = ExtResource("2_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
@@ -48,7 +58,9 @@ limit_right = 1920
 limit_bottom = 560
 
 [node name="IntroTrigger" type="Area2D" parent="."]
-position = Vector2(120, 490)
+position = Vector2(120, 460)
+collision_layer = 2
+collision_mask = 1
 script = ExtResource("3_trigger")
 dialogue_id = "intro_01"
 one_shot = true
@@ -57,7 +69,9 @@ one_shot = true
 shape = SubResource("RectangleShape2D_trigger_a")
 
 [node name="LampTrigger" type="Area2D" parent="."]
-position = Vector2(560, 490)
+position = Vector2(560, 460)
+collision_layer = 2
+collision_mask = 1
 script = ExtResource("3_trigger")
 dialogue_id = "street_lamp_01"
 one_shot = true
