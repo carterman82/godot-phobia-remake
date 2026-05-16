@@ -25,6 +25,7 @@ var _current_index: int = 0
 var _active: bool = false
 var _typing: bool = false
 var _full_text: String = ""
+var _typewriter_tween: Tween
 
 # UI nodes (created programmatically so no .tscn dependency)
 var _panel: Panel
@@ -115,7 +116,15 @@ func start_dialogue(dialogue_id: String) -> void:
 	if not _dialogue_data.has(dialogue_id):
 		push_warning("DialogueManager: unknown id '%s'" % dialogue_id)
 		return
-	_lines = _dialogue_data[dialogue_id].get("lines", [])
+	_stop_typewriter()
+	var raw_lines = _dialogue_data[dialogue_id].get("lines", [])
+	if raw_lines is Array:
+		_lines = raw_lines.duplicate(true)
+	else:
+		_lines = []
+	if _lines.is_empty():
+		push_warning("DialogueManager: id '%s' has no lines" % dialogue_id)
+		return
 	_current_index = 0
 	_active = true
 	_panel.show()
@@ -126,6 +135,7 @@ func start_dialogue(dialogue_id: String) -> void:
 func advance() -> void:
 	if not _active:
 		return
+	_stop_typewriter()
 	_current_index += 1
 	if _current_index >= _lines.size():
 		_end_dialogue()
@@ -133,6 +143,9 @@ func advance() -> void:
 		_show_current_line()
 
 func _show_current_line() -> void:
+	if _current_index < 0 or _current_index >= _lines.size():
+		_end_dialogue()
+		return
 	var line: Dictionary = _lines[_current_index]
 	_name_label.text = line.get("speaker", "")
 
@@ -150,9 +163,9 @@ func _show_current_line() -> void:
 	_typing = true
 	_continue_btn.hide()
 
-	var tween := create_tween()
-	tween.tween_property(_text_label, "visible_characters", len(_full_text), len(_full_text) / TYPEWRITER_SPEED)
-	tween.tween_callback(_finish_typing)
+	_typewriter_tween = create_tween()
+	_typewriter_tween.tween_property(_text_label, "visible_characters", len(_full_text), len(_full_text) / TYPEWRITER_SPEED)
+	_typewriter_tween.tween_callback(_finish_typing)
 
 func _finish_typing() -> void:
 	_typing = false
@@ -160,6 +173,7 @@ func _finish_typing() -> void:
 
 func _on_continue_pressed() -> void:
 	if _typing:
+		_stop_typewriter()
 		_text_label.visible_characters = len(_full_text)
 		_typing = false
 		_continue_btn.show()
@@ -167,6 +181,7 @@ func _on_continue_pressed() -> void:
 	advance()
 
 func _end_dialogue() -> void:
+	_stop_typewriter()
 	_active = false
 	_panel.hide()
 	_continue_btn.hide()
@@ -178,3 +193,8 @@ func is_active() -> bool:
 
 func has_dialogue(dialogue_id: String) -> bool:
 	return _dialogue_data.has(dialogue_id)
+
+func _stop_typewriter() -> void:
+	if _typewriter_tween != null and _typewriter_tween.is_valid():
+		_typewriter_tween.kill()
+	_typewriter_tween = null

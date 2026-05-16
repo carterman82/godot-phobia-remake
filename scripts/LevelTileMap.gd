@@ -30,6 +30,8 @@ func _build_tileset() -> void:
 	var source := TileSetAtlasSource.new()
 	source.texture = texture
 	source.texture_region_size = tile_size_px
+	var source_id := ts.add_source(source)
+	source = ts.get_source(source_id) as TileSetAtlasSource
 
 	var tex_size: Vector2i = texture.get_size()
 	var cols := int(tex_size.x / tile_size_px.x)
@@ -50,7 +52,6 @@ func _build_tileset() -> void:
 				td.set_collision_polygons_count(0, 1)
 				td.set_collision_polygon_points(0, 0, poly)
 
-	ts.add_source(source)
 	tile_set = ts
 	print("LevelTileMap: built tileset from ", atlas_texture_path,
 			" - %d x %d tiles." % [cols, rows])
