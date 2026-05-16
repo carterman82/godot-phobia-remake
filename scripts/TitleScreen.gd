@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var _prompt: Label = $UI/PressSpaceLabel
-@onready var _bg: Sprite2D = $Background
 
 func _ready() -> void:
 	AudioManager.play_music("res://assets/audio/music/titlescreen.wav")
@@ -13,6 +12,7 @@ func _blink_prompt() -> void:
 	tween.tween_property(_prompt, "modulate:a", 0.0, 0.6)
 	tween.tween_property(_prompt, "modulate:a", 1.0, 0.6)
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_just_pressed("ui_accept") or event.is_action_just_pressed("dash"):
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("dash"):
+		get_viewport().set_input_as_handled()
 		SceneManager.change_scene("res://scenes/levels/Level01.tscn")

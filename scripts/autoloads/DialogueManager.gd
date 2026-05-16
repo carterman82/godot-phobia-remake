@@ -85,10 +85,10 @@ func _build_ui() -> void:
 	_continue_btn.pressed.connect(_on_continue_pressed)
 	add_child(_continue_btn)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if not _active:
 		return
-	if event.is_action_just_pressed("ui_accept") or event.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("dash"):
 		_on_continue_pressed()
 		get_viewport().set_input_as_handled()
 
